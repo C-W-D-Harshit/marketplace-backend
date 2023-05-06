@@ -265,10 +265,9 @@ exports.getDOD = catchAsyncErrors(async (req, res, next) => {
   const resultPerPage = 5;
   const productsCount = await Product.countDocuments();
 
-  const apiFeature = new ApiFeatures(
-    Product.find({ dod: true }),
-    req.query
-  ).pagination(resultPerPage);
+  const apiFeature = new ApiFeatures(Product.find({ dod: true }), req.query)
+    .pagination(resultPerPage)
+    .filter();
 
   let products = await apiFeature.query;
 
