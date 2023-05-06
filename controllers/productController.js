@@ -294,7 +294,9 @@ exports.getNA = catchAsyncErrors(async (req, res, next) => {
   const apiFeature = new ApiFeatures(
     Product.find({ newArrival: true }),
     req.query
-  ).pagination(resultPerPage);
+  )
+    .pagination(resultPerPage)
+    .filter();
 
   let products = await apiFeature.query;
 
