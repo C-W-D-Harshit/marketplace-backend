@@ -202,5 +202,16 @@ const productSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+// Define a Mongoose pre-save middleware
+productSchema.pre("save", function (next) {
+  const discountPercentage = ((this.price - this.salePrice) / this.price) * 100;
+
+  if (discountPercentage >= 50) {
+    // Set a threshold discount level of 50%
+    this.dod = true; // Set the dod flag to true
+  }
+
+  next(); // Call the next middleware function
+});
 
 module.exports = mongoose.model("Product", productSchema);
