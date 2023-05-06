@@ -170,6 +170,10 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  newArrival: {
+    type: Boolean,
+    default: true,
+  },
   reviews: [
     {
       user: {
@@ -209,6 +213,19 @@ productSchema.pre("save", function (next) {
   if (discountPercentage >= 50) {
     // Set a threshold discount level of 50%
     this.dod = true; // Set the dod flag to true
+  }
+
+  next(); // Call the next middleware function
+});
+
+productSchema.pre("save", function (next) {
+  const currentDate = new Date();
+  const thresholdDate = new Date();
+  thresholdDate.setDate(currentDate.getDate() - 5); // Set the threshold date to 5 days ago
+
+  if (this.createdAt <= thresholdDate) {
+    // Check if the product was created more than 5 days ago
+    this.newArrival = false; // Turn off the newArrival flag
   }
 
   next(); // Call the next middleware function
