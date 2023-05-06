@@ -262,7 +262,7 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
 
 exports.getDOD = catchAsyncErrors(async (req, res, next) => {
   // const products = await Product.find()
-  const resultPerPage = 6;
+  const resultPerPage = 5;
   const productsCount = await Product.countDocuments();
 
   const apiFeature = new ApiFeatures(
@@ -289,7 +289,7 @@ exports.getDOD = catchAsyncErrors(async (req, res, next) => {
 
 exports.getNA = catchAsyncErrors(async (req, res, next) => {
   // const products = await Product.find()
-  const resultPerPage = 6;
+  const resultPerPage = 5;
   const productsCount = await Product.countDocuments();
 
   const apiFeature = new ApiFeatures(
