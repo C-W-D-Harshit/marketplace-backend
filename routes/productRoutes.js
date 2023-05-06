@@ -9,12 +9,14 @@ const {
   getProductReviews,
   deleteReview,
   getAdminProducts,
+  getDOD,
 } = require("../controllers/productController");
 
 const router = express.Router();
 
 router.route("/admin/product/new").post(createProduct);
 router.route("/products").get(getAllProducts);
+router.route("/products/dod").get(getDOD);
 router.route("/admin/products").get(getAdminProducts);
 router.route("/admin/product/new").post(createProduct);
 
