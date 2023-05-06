@@ -162,23 +162,11 @@ const productSchema = new mongoose.Schema({
     ref: "Vendor",
     required: true,
   },
-  ratings: [
-    {
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-      },
-      rating: {
-        type: Number,
-        required: true,
-      },
-      text: {
-        type: String,
-      },
-    },
-  ],
-  numOfRatings: {
+  ratings: {
+    type: Number,
+    default: 0,
+  },
+  numOfReviews: {
     type: Number,
     default: 0,
   },
