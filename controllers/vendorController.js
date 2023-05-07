@@ -138,6 +138,14 @@ exports.getVendorDetails = catchAsyncErrors(async (req, res, next) => {
     vendor,
   });
 });
+
+exports.getProdVendor = catchAsyncErrors(async (req, res, next) => {
+  const vendor = await Vendor.findById(req.params.id);
+  res.status(200).json({
+    success: true,
+    vendor,
+  });
+});
 // update Vendor password
 exports.vendorUpdatePassword = catchAsyncErrors(async (req, res, next) => {
   const vendor = await Vendor.findById(req.vendor.id).select("+password");

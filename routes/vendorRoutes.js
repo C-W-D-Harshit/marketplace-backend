@@ -9,6 +9,7 @@ const {
   vendorLogout,
   vendorUpdateProfile,
   vendorOrders,
+  getProdVendor,
   //   getAllUser,
   //   getSingleUser,
   //   updateUserRole,
@@ -21,12 +22,12 @@ const router = express.Router();
 router.route("/vendor/register").post(registerUser);
 
 router.route("/vendor/login").post(loginVendor);
-
 router.route("/vendor/password/forgot").post(vendorForgotPassword);
 router.route("/vendor/password/reset/:token").put(vendorResetPassword);
 router.route("/vendor/logout").get(vendorLogout);
 
 router.route("/vendor/me").get(isAuthenticatedVendor, getVendorDetails);
+router.route("/vendor/:id").get(getProdVendor);
 
 router
   .route("/password/update")

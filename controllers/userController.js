@@ -218,6 +218,15 @@ exports.getAllUser = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+exports.getAllVendors = catchAsyncErrors(async (req, res, next) => {
+  const vendors = await Vendor.find();
+
+  res.status(200).json({
+    success: true,
+    vendors,
+  });
+});
+
 // Get single user (admin)
 exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.params.id);
